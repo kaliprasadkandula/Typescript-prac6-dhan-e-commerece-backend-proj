@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column ,BaseEntity, OneToMany} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column ,BaseEntity, OneToMany, JoinColumn} from "typeorm";
 import { Product } from "./productEntity";
 
 @Entity()
@@ -24,6 +24,6 @@ export class Supplier extends BaseEntity {
   @Column()
   Fax: string;
   
-  @OneToMany(()=>Product,(product)=>product,{cascade: true})
+  @OneToMany(()=>Product,(product)=>product.id,{cascade: true})
   products: Product[] 
 }
