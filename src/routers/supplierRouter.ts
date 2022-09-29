@@ -2,6 +2,7 @@ import { builtinModules } from "module";
 import { AppDataSource } from "../data-source";
 import { Supplier } from "../entity/supplierEntity";
 import {Product} from "../entity/productEntity";
+
 import * as express from "express";//import express from "express" not working
 // const express = require('express'); //not working
 export const supplierRouter:express.Router= express.Router();

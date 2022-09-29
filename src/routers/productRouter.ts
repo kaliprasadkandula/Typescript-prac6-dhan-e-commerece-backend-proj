@@ -36,6 +36,7 @@ ProductRouter.post('/add/:CompanyName',async(req,res)=>{
     
 })
 
+
 //Get all Products list
 ProductRouter.get('/',async (req, res) => {
     const ProductRepo = await AppDataSource.getRepository(Product)
