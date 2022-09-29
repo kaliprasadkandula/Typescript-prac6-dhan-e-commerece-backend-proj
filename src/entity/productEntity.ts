@@ -18,7 +18,7 @@ export class Product extends BaseEntity {
   @Column()
   IsDiscontinued: string;
 
-  @ManyToOne(()=>Supplier,(supplier)=>supplier.products)
+  @ManyToOne(()=>Supplier,(supplier)=>supplier.products,{onDelete:"CASCADE"})
   @JoinColumn()  //because you want a column to be created
   Supplierid:Supplier
  

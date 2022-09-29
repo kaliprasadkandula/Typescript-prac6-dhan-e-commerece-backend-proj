@@ -1,6 +1,7 @@
 import { builtinModules } from "module";
 import { AppDataSource } from "../data-source";
 import { Supplier } from "../entity/supplierEntity";
+import {Product} from "../entity/productEntity";
 import * as express from "express";//import express from "express" not working
 // const express = require('express'); //not working
 export const supplierRouter:express.Router= express.Router();
@@ -62,6 +63,15 @@ supplierRouter.put('/edit/phone/:companyName',async(req, res)=>{
 supplierRouter.delete('/:companyName',async(req, res)=>{
     const rp=req.params
     const supplierRepo= await AppDataSource.getRepository(Supplier)
+    const ProductRepo = await AppDataSource.getRepository(Product)
+    const ProductEntities = await ProductRepo.find({relations:['Supplierid']})
+    ProductEntities.forEach((item)=>{
+        if(item.Supplierid.CompanyName === rp.companyName)
+        {
+            ProductRepo.delete(item.id)
+        }
+    })
+
     const deletedInfo=await supplierRepo.delete({CompanyName:rp.companyName})
     if(deletedInfo)
     {
