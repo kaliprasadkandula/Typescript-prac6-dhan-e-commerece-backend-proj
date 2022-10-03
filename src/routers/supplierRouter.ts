@@ -60,18 +60,20 @@ supplierRouter.put('/edit/phone/:companyName',async(req, res)=>{
 
 
 })
+
 //delete the supplier based on company name
 supplierRouter.delete('/:companyName',async(req, res)=>{
     const rp=req.params
     const supplierRepo= await AppDataSource.getRepository(Supplier)
     const ProductRepo = await AppDataSource.getRepository(Product)
-    const ProductEntities = await ProductRepo.find({relations:['Supplierid']})
-    ProductEntities.forEach((item)=>{
-        if(item.Supplierid.CompanyName === rp.companyName)
-        {
-            ProductRepo.delete(item.id)
-        }
-    })
+
+    // const ProductEntities = await ProductRepo.find({relations:['Supplierid']})
+    // ProductEntities.forEach((item)=>{
+    //     if(item.Supplierid.CompanyName === rp.companyName)
+    //     {
+    //         ProductRepo.delete(item.id)
+    //     }
+    // })
 
     const deletedInfo=await supplierRepo.delete({CompanyName:rp.companyName})
     if(deletedInfo)

@@ -14,7 +14,7 @@ export class Supplier extends BaseEntity {
 
   @Column()
   City: string;
-
+ 
   @Column()
   Country: string;
 
@@ -24,6 +24,6 @@ export class Supplier extends BaseEntity {
   @Column()
   Fax: string;
   
-  @OneToMany(()=>Product,(product)=>product.id,{cascade: true})
+  @OneToMany(()=>Product,(product)=>product.id)
   products: Product[] 
 }

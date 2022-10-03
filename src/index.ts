@@ -6,6 +6,7 @@ const app = express();
 import { supplierRouter } from "./routers/supplierRouter";
 import { ProductRouter } from "./routers/productRouter";
 import { CustomerRouter } from "./routers/CustomerRouter"
+import { ShoppingRouter } from "./routers/ShoppingRouter";
 import "reflect-metadata";
 import { application } from "express";
 // import { productRouter } from "./routers/productRouter";
@@ -13,6 +14,7 @@ app.use(express.json()); //if you dont add this you will get req body as undefin
 app.use("/suppliers", supplierRouter);
 app.use("/products", ProductRouter);
 app.use("/customers", CustomerRouter);
+app.use("/shop",ShoppingRouter)
 const port = process.env.PORT;
 app.get("/", (req, res) => res.send("welcome to e commerce website"));
 AppDataSource.initialize()

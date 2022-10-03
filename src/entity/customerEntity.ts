@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany, JoinColumn } from "typeorm";
+import { Order } from "./OrderEntity";
 
 @Entity()
 export class Customer extends BaseEntity {
@@ -19,4 +20,8 @@ export class Customer extends BaseEntity {
 
   @Column()
   Phone: string;
+
+  @OneToMany(()=>Order,(order)=>order.CustomerId,{cascade: true,onDelete:"CASCADE"})
+  @JoinColumn()
+  orders:Order[]
 }
